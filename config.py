@@ -12,6 +12,12 @@ _LOOKUP = {
         'resnet50': 2048,
         'resnet101' : 2048,
     },
+    'expected_num_pos': {
+            'pascal': 1.5,
+            'coco': 2.9,
+            'nuswide': 1.9,
+            'cub': 31.4
+        },
     'num_classes': {
         'pascal': 20,
         'coco': 80,
@@ -53,6 +59,7 @@ def set_default_configs(args):
 def set_follow_up_configs(args):
     args.feat_dim = _LOOKUP['feat_dim'][args.arch]
     args.num_classes = _LOOKUP['num_classes'][args.dataset]
+    args.expected_num_pos = _LOOKUP['expected_num_pos'][args.dataset]
     args.delta_rel = _LOOKUP['delta_rel'][args.largelossmod_scheme]
     now = datetime.now()
     args.experiment_name = str(now).split(".")[0].replace('-','').replace(" ","_").replace(":","")
@@ -78,7 +85,7 @@ def get_configs():
     parser.add_argument('--bsize', type=int, default=16)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--alpha', type=float, default=5)
-    
+    parser.add_argument('--beta', type=float, default=0.5)
 
     args = parser.parse_args()
     args = set_default_configs(args)
