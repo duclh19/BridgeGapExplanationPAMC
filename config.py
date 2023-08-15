@@ -44,7 +44,7 @@ def set_default_configs(args):
     args.arch = 'resnet50'
     args.freeze_feature_extractor = False
     args.use_pretrained = True
-    args.num_workers = 4
+    args.num_workers = 2
     args.lr_mult = 10
     args.save_path = './results'
 
