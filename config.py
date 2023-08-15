@@ -48,7 +48,7 @@ def set_default_configs(args):
     args.train_set_variant = 'observed'
     args.val_set_variant = 'clean'
     args.arch = 'resnet50'
-    args.freeze_feature_extractor = False
+    # args.freeze_feature_extractor = False
     args.use_pretrained = True
     args.num_workers = 2
     args.lr_mult = 10
@@ -86,7 +86,7 @@ def get_configs():
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--alpha', type=float, default=5)
     parser.add_argument('--beta', type=float, default=0.5)
-
+    parser.add_argument('--freeze_feature_extractor', type=bool, default=False)
     args = parser.parse_args()
     args = set_default_configs(args)
     args = set_follow_up_configs(args)
