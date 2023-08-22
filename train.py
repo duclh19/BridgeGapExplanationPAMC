@@ -1,3 +1,4 @@
+from math import e
 import numpy as np
 import torch
 import datasets
@@ -89,7 +90,7 @@ def run_train(P):
 
         P['clean_rate'] -= P['delta_rel']
         print(f"Epoch {epoch} : val mAP {map_val:.3f} - clean rate {P['clean_rate']:.3f}")
-        
+
         if bestmap_val < map_val:
             bestmap_val = map_val
             bestmap_epoch = epoch
@@ -97,7 +98,8 @@ def run_train(P):
             print(f'Saving model weight for best val mAP {bestmap_val:.3f}')
             path = os.path.join(P['save_path'], 'bestmodel.pt')
             torch.save((model.state_dict(), P), path)
-
+        else:
+            P['clean_rate'] = P['delta_rate']
     # Test phase
     path = os.path.join(P['save_path'], 'bestmodel.pt')
     model_state, _ = torch.load(path)

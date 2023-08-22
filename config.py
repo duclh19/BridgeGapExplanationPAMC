@@ -31,9 +31,9 @@ _LOOKUP = {
         'LL-Cp': 0.1,
     }, 
     'delta_rate':{
-        'LL-R': 0.96, 
-        'LL-Ct': 0.99,
-        'LL-Cp': 0.99,
+        'LL-R': 0.95, 
+        'LL-Ct': 0.98,
+        'LL-Cp': 0.993, #test
     }
 }
 
