@@ -85,7 +85,7 @@ def get_configs():
                         choices=_DATASET)
     parser.add_argument('--largelossmod_scheme', type=str, required=True, 
                         choices=_SCHEMES)
-    parser.add_argument('--cam', type=bool, required=True, default=True)   
+    parser.add_argument('--cam', type=bool, default=False)   
     parser.add_argument('--num_epochs', type=int, default=10)
     parser.add_argument('--gpu_num', type=str, default='0')
     parser.add_argument('--bsize', type=int, default=16)
