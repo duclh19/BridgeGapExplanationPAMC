@@ -36,6 +36,7 @@ class ImageClassifier(torch.nn.Module):
         self.linear_classifier = linear_classifier
         self.alpha = P['alpha']
         self.cam = P['cam']
+        print(P['cam'])
 
     def unfreeze_feature_extractor(self):
         for param in self.feature_extractor.parameters():
