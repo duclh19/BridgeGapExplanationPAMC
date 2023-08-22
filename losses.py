@@ -91,7 +91,7 @@ def compute_batch_loss(logits, label_vec, P):
 
     correction_idx = [torch.Tensor([]), torch.Tensor([])]
 
-    if P['clean_rate'] == 1: # if epoch is 1, do not modify losses
+    if P['clean_rate'] == 1 or P['clean_rate'] <= P['delta_rate']: # if epoch is 1, do not modify losses
         final_loss_matrix = loss_matrix
     else:
         if P['largelossmod_scheme'] == 'LL-Cp':

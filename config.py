@@ -29,6 +29,11 @@ _LOOKUP = {
         'LL-R': 0.5,
         'LL-Ct': 0.2,
         'LL-Cp': 0.1,
+    }, 
+    'delta_rate':{
+        'LL-R': 0.96, 
+        'LL-Ct': 0.99,
+        'LL-Cp': 0.99,
     }
 }
 
@@ -61,6 +66,7 @@ def set_follow_up_configs(args):
     args.num_classes = _LOOKUP['num_classes'][args.dataset]
     args.expected_num_pos = _LOOKUP['expected_num_pos'][args.dataset]
     args.delta_rel = _LOOKUP['delta_rel'][args.largelossmod_scheme]
+    args.delta_rate = _LOOKUP['delta_rate'][args.largelossmod_scheme]
     now = datetime.now()
     args.experiment_name = str(now).split(".")[0].replace('-','').replace(" ","_").replace(":","")
     args.save_path = set_dir(args.save_path, args.experiment_name)

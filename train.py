@@ -85,11 +85,11 @@ def run_train(P):
         del y_pred
         del y_true
         map_val = metrics['map']
-                
-        print(f"Epoch {epoch} : val mAP {map_val:.3f}")
+
 
         P['clean_rate'] -= P['delta_rel']
-                
+        print(f"Epoch {epoch} : val mAP {map_val:.3f} - clean rate {P['clean_rate']:.3f}")
+        
         if bestmap_val < map_val:
             bestmap_val = map_val
             bestmap_epoch = epoch
