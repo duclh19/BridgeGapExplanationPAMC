@@ -53,7 +53,7 @@ def set_default_configs(args):
     args.train_set_variant = 'observed'
     args.val_set_variant = 'clean'
     args.arch = 'resnet50'
-    # args.freeze_feature_extractor = False
+    args.freeze_feature_extractor = False
     args.use_pretrained = True
     args.num_workers = 2
     args.lr_mult = 10
@@ -85,13 +85,13 @@ def get_configs():
                         choices=_DATASET)
     parser.add_argument('--largelossmod_scheme', type=str, required=True, 
                         choices=_SCHEMES)
-    parser.add_argument('--cam', type=bool, default=False)   
+
     parser.add_argument('--num_epochs', type=int, default=10)
     parser.add_argument('--gpu_num', type=str, default='0')
     parser.add_argument('--bsize', type=int, default=16)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--alpha', type=float, default=5)
-    parser.add_argument('--beta', type=float, default=0.5)
+    parser.add_argument('--beta', type=float, default=0.0)
     parser.add_argument('--freeze_feature_extractor', type=bool, default=False)
     args = parser.parse_args()
     args = set_default_configs(args)
