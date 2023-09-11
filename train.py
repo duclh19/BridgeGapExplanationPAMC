@@ -23,18 +23,18 @@ def run_train(P):
         )
     
     model = models.ImageClassifier(P)
-    feature_extractor_params = [param for param in list(model.feature_extractor.parameters()) if param.requires_grad]
-    linear_classifier_params = [param for param in list(model.linear_classifier.parameters()) if param.requires_grad]
-    opt_params = [
-        {'params': feature_extractor_params, 'lr' : P['lr']},
-        {'params': linear_classifier_params, 'lr' : P['lr_mult'] * P['lr']}
-    ]
     # feature_extractor_params = [param for param in list(model.feature_extractor.parameters()) if param.requires_grad]
-    # onebyone_conv_params = [param for param in list(model.onebyone_conv.parameters()) if param.requires_grad]
+    # linear_classifier_params = [param for param in list(model.linear_classifier.parameters()) if param.requires_grad]
     # opt_params = [
     #     {'params': feature_extractor_params, 'lr' : P['lr']},
-    #     {'params': onebyone_conv_params, 'lr' : P['lr_mult'] * P['lr']}
+    #     {'params': linear_classifier_params, 'lr' : P['lr_mult'] * P['lr']}
     # ]
+    feature_extractor_params = [param for param in list(model.feature_extractor.parameters()) if param.requires_grad]
+    onebyone_conv_params = [param for param in list(model.onebyone_conv.parameters()) if param.requires_grad]
+    opt_params = [
+        {'params': feature_extractor_params, 'lr' : P['lr']},
+        {'params': onebyone_conv_params, 'lr' : P['lr_mult'] * P['lr']}
+    ]
   
     optimizer = torch.optim.Adam(opt_params, lr=P['lr'])
     

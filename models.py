@@ -43,14 +43,14 @@ class ImageClassifier(torch.nn.Module):
         
     def forward(self, x):
 
-        # feats = self.feature_extractor(x)
-        # CAM = self.onebyone_conv(feats)
-        # CAM = torch.where(CAM > 0, CAM * self.alpha, CAM) # BoostLU operation
-        # logits = F.adaptive_avg_pool2d(CAM, 1).squeeze(-1).squeeze(-1)
-        # else: 
         feats = self.feature_extractor(x)
-        pooled_feats = self.avgpool(feats)
-        logits = self.linear_classifier(pooled_feats)
+        CAM = self.onebyone_conv(feats)
+        CAM = torch.where(CAM > 0, CAM * self.alpha, CAM) # BoostLU operation
+        logits = F.adaptive_avg_pool2d(CAM, 1).squeeze(-1).squeeze(-1)
+        # else: 
+        # feats = self.feature_extractor(x)
+        # pooled_feats = self.avgpool(feats)
+        # logits = self.linear_classifier(pooled_feats)
 
         return logits
 
